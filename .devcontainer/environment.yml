@@ -1,0 +1,19 @@
+name: env_stac
+channels:
+  - terradue
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip:
+    - pystac
+    - stactools
+    - rasterio 
+    - requests 
+    - stac-asset 
+    - click-logging 
+    - tabulate 
+    - tqdm 
+    - pystac-client 
+    - ipykernel
+    - scikit-image
+    - loguru

@@ -1,0 +1,19 @@
+{
+	"name": "application-hub-config",
+
+	"build": {
+		"context": "..",
+		"dockerfile": "./Dockerfile"},
+	"settings": {
+		"python.pythonPath": "/opt/conda/envs/env_stac/bin/python"},
+	"extensions": [
+		"ms-python.python",
+		"ms-kubernetes-tools.vscode-kubernetes-tools",
+		"redhat.vscode-yaml",
+		"ms-toolsai.jupyter"
+	],
+	"remoteEnv": {
+		"PATH": "${containerEnv:PATH}:/opt/conda/envs/env_stac/bin"},
+	"mounts": [],
+	"postStartCommand": ""
+}
