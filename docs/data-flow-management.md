@@ -16,6 +16,3 @@ For the **data stage-in**, the Platform creates a local STAC Catalog with a STAC
 
 For the **data stage-out**, the Application creates a local STAC Catalog as the output files manifest describing the results metadata and assets’ location thus enabling the Platform to provide the processing results in the OGC API — Processes response.
 
-## Hands-on
-
-Open notebook _01 EO Products as Input Data_ to run a hands-on exercise on data stage-in

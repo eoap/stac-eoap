@@ -1,7 +1,7 @@
-site_name: Mastering Earth Observation Application Packaging with CWL
+site_name: STAC for input/output data management in EO applications
 
 theme:
-    logo: imgs/icon-eoap.png
+    logo: assets/icon-eoap.png
     name: material
 
     palette:
@@ -54,3 +54,4 @@ extra_javascript:
 nav:
   - Introduction: 'index.md'
   - Data flow management: 'data-flow-management.md'
+  - Hands-on: 'hands-on.md'
