@@ -17,3 +17,5 @@ dependencies:
     - ipykernel
     - scikit-image
     - loguru
+    - mkdocs-material
+    - mkdocs-mermaid2-plugin
