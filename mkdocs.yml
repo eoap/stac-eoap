@@ -55,3 +55,5 @@ nav:
   - Introduction: 'index.md'
   - Data flow management: 'data-flow-management.md'
   - Hands-on: 'hands-on.md'
+
+copyright: <a href="https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg">License CC BY-SA 4.0</a>, by <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons</a>
