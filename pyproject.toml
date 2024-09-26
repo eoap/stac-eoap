@@ -1,0 +1,68 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "stac-eoap"
+dynamic = ["version"]
+description = 'Understanding STAC for input/output data modelling in Earth Observation Applications'
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+keywords = []
+authors = [
+  { name = "Fabrice Brito", email = "fabrice.brito@terradue.com" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = []
+
+[project.urls]
+Documentation = "https://github.com/eoap/stac-eoap#readme"
+Issues = "https://github.com/eoap/stac-eoap/issues"
+Source = "https://github.com/eoap/stac-eoap"
+
+[tool.hatch.version]
+path = "__about__.py"
+
+[tool.hatch.envs.types]
+extra-dependencies = [
+  "mypy>=1.0.0",
+]
+
+[tool.hatch.envs.default]
+skip-install = false
+dependencies = [
+    "pystac",
+    "stactools",
+    "rasterio",
+    "requests", 
+    "stac-asset", 
+    "click-logging", 
+    "tabulate", 
+    "tqdm", 
+    "pystac-client",
+    "ipykernel",
+    "scikit-image",
+    "loguru",
+    "rio-stac",
+    "stactools-sentinel2",
+    "mkdocs-material",
+    "mkdocs-mermaid2-plugin"
+]
+
+
+[tool.hatch.envs.docs.scripts]
+serve = "mkdocs serve"
+deploy = "mkdocs gh-deploy --force"
