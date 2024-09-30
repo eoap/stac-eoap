@@ -59,7 +59,9 @@ dependencies = [
     "rio-stac",
     "stactools-sentinel2",
     "mkdocs-material",
-    "mkdocs-mermaid2-plugin"
+    "mkdocs-mermaid2-plugin",
+    "boto3",
+    "cwl-utils"
 ]
 
 

@@ -129,5 +129,5 @@ requirements:
           # upload catalog to S3
           print(f"upload catalog.json to s3://{bucket}/{subfolder}", file=sys.stderr)
           pystac.write_file(cat, cat.get_self_href())
-
+          shutil.rmtree("/tmp/catalog/")
           print(f"s3://{bucket}/{subfolder}/catalog.json", file=sys.stdout)
