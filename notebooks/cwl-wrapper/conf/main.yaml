@@ -2,7 +2,7 @@ class: Workflow
 $namespaces:
   cwltool: http://commonwl.org/cwltool#
 doc: Main stage manager
-id: main
+id: wrapped
 label: macro-cwl
 hints:
   "cwltool:Secrets":
