@@ -47,6 +47,8 @@ $graph:
   - class: CommandLineTool
     id: detect-water-body
     requirements:
+      DockerRequirement:
+        dockerPull: ghcr.io/eoap/quickwin/detect-water-body@sha256:e7ae9cd60e197f54c2890584257c709ae70b5eba4f8fbc74912f6c52d9ff39c4
       InlineJavascriptRequirement: {}
       EnvVarRequirement:
         envDef: {}
