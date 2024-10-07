@@ -31,6 +31,8 @@ arguments:
   - $( inputs.s3_bucket )
   - $( inputs.sub_path )
 requirements:
+  DockerRequirement:
+    dockerPull: ghcr.io/eoap/mastering-app-package/stage:1.0.0
   InlineJavascriptRequirement: {}
   EnvVarRequirement:
     envDef:

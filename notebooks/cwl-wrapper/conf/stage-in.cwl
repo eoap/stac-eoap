@@ -11,7 +11,8 @@ baseCommand:
 arguments:
 - $( inputs.input )
 requirements:
-
+  DockerRequirement:
+    dockerPull: ghcr.io/eoap/mastering-app-package/stage:1.0.0
   InlineJavascriptRequirement: {}
   InitialWorkDirRequirement:
     listing:
