@@ -19,3 +19,7 @@ dependencies:
     - loguru
     - mkdocs-material
     - mkdocs-mermaid2-plugin
+    - boto3
+    - rio-stac
+    - cwltool
+    - graphviz
