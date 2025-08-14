@@ -2,7 +2,7 @@ cwlVersion: v1.0
 
 
 class: CommandLineTool
-id: stage-out
+id: my-super-stage-out
 
 doc: "Stage-out the results to S3"
 inputs:
@@ -18,19 +18,39 @@ inputs:
     type: string
   endpoint_url:
     type: string
+  stac_catalog:
+    doc: "The folder containing the STAC catalog to stage out"
+    label: "STAC Catalog folder"
+    type: Directory
 outputs:
   s3_catalog_output:
+    type: https://raw.githubusercontent.com/eoap/schemas/main/string_format.yaml#URI
     outputBinding:
-      outputEval: ${  return "s3://" + inputs.s3_bucket + "/" + inputs.sub_path + "/catalog.json"; }
-    type: string
+      glob: catalog-uri.txt
+      loadContents: true
+      outputEval: |
+        ${ 
+          return { "value": self[0].contents, "type": "https://raw.githubusercontent.com/eoap/schemas/main/string_format.yaml#URI" };
+        }
+stdout: catalog-uri.txt
 baseCommand:
   - python
   - stage.py
 arguments:
-  - $( inputs.wf_outputs.path )
+  - $( inputs.stac_catalog.path )
   - $( inputs.s3_bucket )
-  - $( inputs.sub_path )
+  - ${ 
+      var firstPart = (Math.random() * 46656) | 0;
+      var secondPart = (Math.random() * 46656) | 0;
+      firstPart = ("000" + firstPart.toString(36)).slice(-3);
+      secondPart = ("000" + secondPart.toString(36)).slice(-3);
+      return inputs.sub_path + "-" + firstPart + secondPart;
+    } 
+  
 requirements:
+  SchemaDefRequirement:
+    types:
+    - $import: https://raw.githubusercontent.com/eoap/schemas/main/string_format.yaml
   DockerRequirement:
     dockerPull: ghcr.io/eoap/mastering-app-package/stage:1.0.0
   InlineJavascriptRequirement: {}
@@ -128,6 +148,4 @@ requirements:
           print(f"upload catalog.json to s3://{bucket}/{subfolder}", file=sys.stderr)
           pystac.write_file(cat, cat.get_self_href())
 
-          shutil.rmtree("/tmp/catalog/")
-
-          print(f"s3://{bucket}/{subfolder}/catalog.json", file=sys.stdout)
+          print(f"s3://{bucket}/{subfolder}/catalog.json", end="", file=sys.stdout)

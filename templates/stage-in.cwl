@@ -1,16 +1,32 @@
 cwlVersion: v1.0
 
 class: CommandLineTool
-id: main
-inputs: {}
-outputs: {}
+id: my-asthonishing-stage-in-directory
 
+inputs:
+  reference:
+    type: https://raw.githubusercontent.com/eoap/schemas/main/string_format.yaml#URI
+    doc: "A STAC Item to stage" 
+    label: "STAC Item URL"
+  another_input:
+    type: string
+    doc: "An additional input for demonstration purposes"
+    label: "Another Input"
+outputs:
+  staged:
+    type: Directory
+    outputBinding:
+      glob: .
 baseCommand: 
 - python
 - stage.py
 arguments:
-- $( inputs.input )
+- $( inputs.reference.value )
+- $( inputs.another_input ) # This is an additional input to demonstrate the use of multiple inputs
 requirements:
+  SchemaDefRequirement:
+    types:
+    - $import: https://raw.githubusercontent.com/eoap/schemas/main/string_format.yaml
   DockerRequirement:
     dockerPull: ghcr.io/eoap/mastering-app-package/stage:1.0.0
   InlineJavascriptRequirement: {}
@@ -50,7 +66,8 @@ requirements:
               return cat
 
           href = sys.argv[1]
-
+          empty_arg = sys.argv[2]
+          
           cat = asyncio.run(main(href))
 
 
