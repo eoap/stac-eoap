@@ -61,7 +61,11 @@ dependencies = [
     "mkdocs-material",
     "mkdocs-mermaid2-plugin",
     "boto3",
-    "cwl-utils"
+    "cwl-utils",
+    "eoap-cwlwrap",
+    "graphviz",
+    "cwlloader",
+    "cwltool",
 ]
 
 
