@@ -1,3 +1,4 @@
+# Embedded schema definitions derived from eoap/schemas (Copyright 2025 Terradue, Apache-2.0).
 cwlVersion: v1.2
 class: CommandLineTool
 id: my-asthonishing-stage-in-file
@@ -15,6 +16,8 @@ outputs:
     type: File
     outputBinding:
       glob: staged
+    label: staged
+    doc: staged.
 baseCommand:
 - python
 - stage.py
@@ -26,7 +29,13 @@ requirements:
     networkAccess: true
   SchemaDefRequirement:
     types:
-    - $import: https://raw.githubusercontent.com/eoap/schemas/main/string_format.yaml
+    - type: record
+      name: https://raw.githubusercontent.com/eoap/schemas/main/string_format.yaml#URI
+      doc: Represents a valid [URI](https://datatracker.ietf.org/doc/html/rfc3986).
+      fields:
+      - name: value
+        type: string
+        doc: A valid [URI](https://datatracker.ietf.org/doc/html/rfc3986).
   DockerRequirement:
     dockerPull: ghcr.io/eoap/application-package-patterns/vegetation-indexes:0.1.1
   InlineJavascriptRequirement: {}
@@ -53,3 +62,14 @@ requirements:
         print(f"Downloaded to {output_path}")
 
         empty_arg = sys.argv[2]
+$namespaces:
+  s: https://schema.org/
+s:softwareVersion: 0.0.1
+s:codeRepository: https://github.com/eoap/stac-eoap
+s:license: https://spdx.org/licenses/MIT.html
+s:author:
+- class: s:Person
+  s:name: Fabrice Brito
+  s:email: fabrice.brito@terradue.com
+label: Stage in file
+doc: Stage in file for the STAC EOAP training module.

@@ -1,9 +1,8 @@
+# Module-defined enums are embedded; the shared OGC schema remains imported.
 cwlVersion: v1.2
 $namespaces:
   s: https://schema.org/
-s:softwareVersion: 1.0.0
-schemas:
-- http://schema.org/version/9.0/schemaorg-current-http.rdf
+s:softwareVersion: 0.0.1
 $graph:
 - class: Workflow
   id: water-bodies-detection
@@ -13,7 +12,16 @@ $graph:
     SchemaDefRequirement:
       types:
       - $import: https://raw.githubusercontent.com/eoap/schemas/main/ogc.yaml
-      - $import: eoap-types.yaml
+      - name: '#EPSGCode'
+        type: enum
+        symbols:
+        - '4326'
+      - name: '#SpectralBand'
+        type: enum
+        symbols:
+        - green
+        - nir
+        - nir08
   inputs:
     aoi:
       label: area of interest
@@ -22,14 +30,14 @@ $graph:
     epsg:
       label: EPSG code
       doc: EPSG code
-      type: eoap-types.yaml#EPSGCode
+      type: '#EPSGCode'
       default: '4326'
     bands:
       label: bands used for the NDWI
       doc: bands used for the NDWI
       type:
         type: array
-        items: eoap-types.yaml#SpectralBand
+        items: '#SpectralBand'
       default:
       - green
       - nir08
@@ -42,6 +50,8 @@ $graph:
     outputSource:
     - node_detect/stac-catalog
     type: Directory
+    label: stac catalog
+    doc: stac catalog.
   steps:
     node_detect:
       run: '#detect-water-body'
@@ -271,7 +281,16 @@ $graph:
     SchemaDefRequirement:
       types:
       - $import: https://raw.githubusercontent.com/eoap/schemas/main/ogc.yaml
-      - $import: eoap-types.yaml
+      - name: '#EPSGCode'
+        type: enum
+        symbols:
+        - '4326'
+      - name: '#SpectralBand'
+        type: enum
+        symbols:
+        - green
+        - nir
+        - nir08
   baseCommand:
   - python
   - -m
@@ -282,32 +301,43 @@ $graph:
       type: Directory
       inputBinding:
         prefix: --input-item
+      label: item
+      doc: item.
     aoi:
       type: https://raw.githubusercontent.com/eoap/schemas/main/ogc.yaml#BBox
       inputBinding:
         prefix: --aoi
         valueFrom: ${ if (self.bbox.length !== 4) { throw 'Expected a 2D bounding box'; } return self.bbox.join(',');
           }
+      label: aoi
+      doc: aoi.
     epsg:
-      type: eoap-types.yaml#EPSGCode
+      type: '#EPSGCode'
       inputBinding:
         prefix: --epsg
         valueFrom: $( "EPSG:" + self )
+      label: epsg
+      doc: epsg.
     band:
       type:
         type: array
-        items: eoap-types.yaml#SpectralBand
+        items: '#SpectralBand'
         inputBinding:
           prefix: --band
+      label: band
+      doc: band.
   outputs:
     stac-catalog:
       outputBinding:
         glob: .
       type: Directory
-s:codeRepository:
-  URL: https://github.com/eoap/quickwin-inline-code.git
+      label: stac catalog
+      doc: stac catalog.
+  label: App water bodies
+  doc: App water bodies for the STAC EOAP training module.
+s:codeRepository: https://github.com/eoap/stac-eoap
 s:author:
 - class: s:Person
-  s.name: Jane Doe
-  s.email: jane.doe@acme.earth
-  s.affiliation: ACME
+  s:name: Fabrice Brito
+  s:email: fabrice.brito@terradue.com
+s:license: https://spdx.org/licenses/MIT.html

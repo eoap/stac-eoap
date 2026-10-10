@@ -1,3 +1,4 @@
+# Embedded schema definitions derived from eoap/schemas (Copyright 2025 Terradue, Apache-2.0).
 cwlVersion: v1.2
 class: CommandLineTool
 id: my-super-stage-out
@@ -5,16 +6,28 @@ doc: Stage-out the results to S3
 inputs:
   s3_bucket:
     type: string
+    label: s3 bucket
+    doc: s3 bucket.
   sub_path:
     type: string
+    label: sub path
+    doc: sub path.
   aws_access_key_id:
     type: string
+    label: aws access key id
+    doc: aws access key id.
   aws_secret_access_key:
     type: string
+    label: aws secret access key
+    doc: aws secret access key.
   region_name:
     type: string
+    label: region name
+    doc: region name.
   endpoint_url:
     type: https://raw.githubusercontent.com/eoap/schemas/main/string_format.yaml#URI
+    label: endpoint url
+    doc: endpoint url.
   stac_catalog:
     doc: The folder containing the STAC catalog to stage out
     label: STAC Catalog folder
@@ -24,6 +37,8 @@ outputs:
     type: https://raw.githubusercontent.com/eoap/schemas/main/string_format.yaml#URI
     outputBinding:
       outputEval: '${ return {value: "s3://" + inputs.s3_bucket + "/" + inputs.sub_path + "/catalog.json"}; }'
+    label: s3 catalog output
+    doc: s3 catalog output.
 stdout: catalog-uri.txt
 baseCommand:
 - python
@@ -37,7 +52,13 @@ requirements:
     networkAccess: true
   SchemaDefRequirement:
     types:
-    - $import: https://raw.githubusercontent.com/eoap/schemas/main/string_format.yaml
+    - type: record
+      name: https://raw.githubusercontent.com/eoap/schemas/main/string_format.yaml#URI
+      doc: Represents a valid [URI](https://datatracker.ietf.org/doc/html/rfc3986).
+      fields:
+      - name: value
+        type: string
+        doc: A valid [URI](https://datatracker.ietf.org/doc/html/rfc3986).
   DockerRequirement:
     dockerPull: ghcr.io/eoap/mastering-app-package/stage:1.0.0
   InlineJavascriptRequirement: {}
@@ -139,3 +160,13 @@ requirements:
         pystac.write_file(cat, cat.get_self_href())
 
         print(f"s3://{bucket}/{subfolder}/catalog.json", end="", file=sys.stdout)
+$namespaces:
+  s: https://schema.org/
+s:softwareVersion: 0.0.1
+s:codeRepository: https://github.com/eoap/stac-eoap
+s:license: https://spdx.org/licenses/MIT.html
+s:author:
+- class: s:Person
+  s:name: Fabrice Brito
+  s:email: fabrice.brito@terradue.com
+label: Stage out

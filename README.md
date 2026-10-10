@@ -37,3 +37,20 @@ See `notebooks/cwl-workflow/typed-inputs.yaml` for processing inputs and
 notebooks in order from their `notebooks` directory. Set the S3 endpoint and
 credentials in notebooks 03 and 04 for your deployment. Staging CWL explicitly
 requests network access and uses serial downloads with bounded timeouts.
+
+## CWL documentation acceptance
+
+Run `hatch run cwl-docs --validate --output /tmp/stac-cwl-docs` to validate metadata,
+embedded module-defined types and the approved shared OGC schema import, and documented typed ports, and render Markdown
+for all six CWL documents. This module-local generator is the equivalent
+documentation path; compatibility with transpiler-mate cwl2markdown is not claimed.
+The wrapping notebook additionally embeds wrapper-defined types in its generated CWL.
+
+Validation on 11 October 2026: all six CWL documents pass the metadata/Markdown
+check and isolated CWL validation allowing only the shared OGC import. Notebooks
+01–03 passed in `/workspace/lab-results/20261010T215727173440Z`; the final
+04–05 run passed in `/workspace/lab-results/20261010T220833487865Z`.
+No `cwltool --pack` is used.
+The final composed workflow also passed and returned
+`s3://results/run-005/catalog.json`; its log is
+`/workspace/stac-final-run.log` and result is `/workspace/stac-final-result.json`.
