@@ -16,3 +16,24 @@ The Best Practice for EO Application Package selected a STAC Catalog with STAC I
 The webpage of the documentation is eoap.github.io/stac-eoap/. 
 
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
+## Typed CWL training
+
+The CWL examples use CWL 1.2 and EOAP schemas. Stage-in references and S3
+endpoints are URI records with a `value` field; stage-out returns the same URI
+type. The AOI is an OGC `BBox` record (`bbox` and `crs: CRS84`), EPSG is the
+`4326` enum, and bands are enums (`green`, `nir`, `nir08`). CLI bindings convert
+these values to the processing command's arguments. Staged inputs and local
+results retain CWL `Directory` types.
+
+Notebook 04 demonstrates typed parameters and executes stage-in, processing,
+and stage-out. Notebook 05 composes the typed workflow and staging processes
+using `eoap-cwlwrap==0.32.0`'s Python `wrap` API and packs the processes with
+`cwl-loader==0.27.0`. The wrapper is maintained at
+https://github.com/EOEPCA/eoap-cwlwrap. Its command-line plugin additionally
+requires `transpiler-mate-runtime`; the notebooks use the Python API directly.
+
+See `notebooks/cwl-workflow/typed-inputs.yaml` for processing inputs and
+`notebooks/cwl-workflow/wrapped-inputs.yaml` for the end-to-end wrapper. Run
+notebooks in order from their `notebooks` directory. Set the S3 endpoint and
+credentials in notebooks 03 and 04 for your deployment. Staging CWL explicitly
+requests network access and uses serial downloads with bounded timeouts.

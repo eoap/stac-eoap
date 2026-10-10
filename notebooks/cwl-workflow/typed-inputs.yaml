@@ -1,0 +1,11 @@
+# Run with cwltool --podman cwl-workflow/app-water-bodies.cwl#water-bodies-detection cwl-workflow/typed-inputs.yaml
+# Update this staged catalog location after running stage-in.
+item:
+  class: Directory
+  path: ../staged
+aoi:
+  class: https://raw.githubusercontent.com/eoap/schemas/main/ogc.yaml#BBox
+  bbox: [-118.985, 38.432, -118.183, 38.938]
+  crs: CRS84
+epsg: "4326"
+bands: [green, nir08]

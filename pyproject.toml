@@ -62,9 +62,12 @@ dependencies = [
     "mkdocs-mermaid2-plugin",
     "boto3",
     "cwl-utils",
-    "eoap-cwlwrap",
+    "eoap-cwlwrap==0.32.0",
     "graphviz",
-    "cwlloader",
+    "cwl-loader==0.27.0",
+    "anyio",
+    "nest-asyncio",
+    "asyncclick",
     "cwltool",
 ]
 

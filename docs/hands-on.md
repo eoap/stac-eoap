@@ -16,6 +16,6 @@ Open notebook "[_03 Platform Data Management CLI.ipynb_](https://github.com/eoap
 
 Open notebook "[_04 Platform Data Management CWL.ipynb_](https://github.com/eoap/stac-eoap/blob/main/notebooks/04%20Platform%20Data%20Management%20CWL.ipynb)" to run individual command-line tools for data stage-in, application and results stage-out with CWL
 
-## Wrapping an Application Package using EOEPCA's cwl-wrapper
+## Wrapping an Application Package using EOEPCA's eoap-cwlwrap
 
-Open notebook "[_05 Platform Data Management Application Wrapping.ipynb_](https://github.com/eoap/stac-eoap/blob/main/notebooks/05%20Platform%20Data%20Management%20Application%20Wrapping.ipynb)" to wrap an Application Package using EOEPCA's cwl-wrapper
+Open notebook "[_05 Platform Data Management Application Wrapping.ipynb_](https://github.com/eoap/stac-eoap/blob/main/notebooks/05%20Platform%20Data%20Management%20Application%20Wrapping.ipynb)" to wrap an Application Package using EOEPCA's eoap-cwlwrap

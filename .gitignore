@@ -5,3 +5,6 @@ S2A*
 S2B*
 *.yaml
 .main.cwl
+!notebooks/cwl-workflow/eoap-types.yaml
+!notebooks/cwl-workflow/typed-inputs.yaml
+!notebooks/cwl-workflow/wrapped-inputs.yaml
