@@ -65,6 +65,7 @@ dependencies = [
     "eoap-cwlwrap==0.32.0",
     "graphviz",
     "cwl-loader==0.27.0",
+    "PyYAML",
     "anyio",
     "nest-asyncio",
     "asyncclick",
