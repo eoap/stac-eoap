@@ -1,6 +1,7 @@
 """Execute notebook 05's composed workflow and inspect its real S3 raster."""
 import json
 import os
+import posixpath
 from pathlib import Path
 import subprocess
 import sys
@@ -35,16 +36,24 @@ def read(href):
     address = urlparse(href)
     assert address.scheme == 's3', href
     return client.get_object(Bucket=address.netloc, Key=address.path.lstrip('/'))['Body'].read()
+def resolve(base, target):
+    if urlparse(target).scheme:
+        return target
+    address = urlparse(base)
+    path = posixpath.normpath(posixpath.join(posixpath.dirname(address.path), target))
+    return f"{address.scheme}://{address.netloc}{path}"
+
 catalog = json.loads(read(href))
-assert next(link['href'] for link in catalog['links'] if link['rel'] == 'root') == href
+assert resolve(href, next(link['href'] for link in catalog['links'] if link['rel'] == 'root')) == href
 item_href = next(link['href'] for link in catalog['links'] if link['rel'] == 'item')
+item_href = resolve(href, item_href)
 item = json.loads(read(item_href))
-assert next(link['href'] for link in item['links'] if link['rel'] == 'root') == href
+assert resolve(item_href, next(link['href'] for link in item['links'] if link['rel'] == 'root')) == href
 rasters = 0
 for asset in item['assets'].values():
     if not asset['href'].endswith('.tif'):
         continue
-    with MemoryFile(read(asset['href'])) as memory, memory.open() as raster:
+    with MemoryFile(read(resolve(item_href, asset['href']))) as memory, memory.open() as raster:
         assert raster.crs.to_epsg() == 32611
         assert raster.width > 0 and raster.height > 0
         pixels = raster.read(1, masked=True)
