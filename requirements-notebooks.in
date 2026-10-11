@@ -1,0 +1,26 @@
+# Python 3.12 environment shared by release acceptance and the PDE.
+PyYAML
+anyio
+nest_asyncio
+stactools
+rasterio
+requests
+stac-asset
+click-logging
+tabulate
+tqdm
+pystac-client
+ipykernel
+nbclient
+nbformat
+bash_kernel
+loguru
+scikit-image
+rio_stac
+boto3==1.35.23
+cwltool
+graphviz
+pandas
+asyncclick
+cwl-loader==0.27.0
+eoap-cwlwrap==0.32.0

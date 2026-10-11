@@ -17,12 +17,12 @@ The Application data flow management relies on the rules:
 * The computational workflow data interfaces use the Spatio Temporal Asset Catalog (STAC) to describe the **EO data inputs** and **generated results**
 
 * Stage-in
-    * All input parameters of the CWL `ComandLineTool` that require the staging of EO products shall be of type `Directory`. 
+    * All input parameters of the CWL `CommandLineTool` that require the staging of EO products shall be of type `Directory`.
     * All input parameters of the CWL `Workflow` that require the staging of EO products shall be of type `Directory`.
     * Applications find a STAC `catalog.json` file
 
 * Stage-out
-    * Applications produce a STAC `catalog.json` in all outputs of type Directory
+    * Applications produce a STAC `catalog.json` in output directories representing EO products to be staged out
     * The outputs field of the `Workflow` that requires the stage-out of the generated products shall be of type `Directory`.
 
 ## Platform Data Flow Management
@@ -34,10 +34,13 @@ The local catalogue provides knowledge about the input and output files data con
 ### Wrapping the Application Package
 
 Wrap an Application Package:
-* plug a stage-in step for all workflow inputs of type Directory
-* plug a stage-out step for all workflow outputs of type Directory
+
+* plug a stage-in step for application workflow inputs representing staged EO products (`Directory` in this example)
+* plug a stage-out step for application workflow outputs representing EO products to persist (`Directory` in this example)
 
 The outcome is a wrapped CWL workflow that takes:
+
 * the application package parameters
 * any stage-in/stage-out parameters the platform may need to perform these operations
 
+Wrapping changes the external EO input to a URI record while retaining the application's internal `Directory` interface. Internal steps consume those directories through CWL connections. See [the application contract](application-data-flow.md) and [typed CWL interfaces](cwl-reference.md).
