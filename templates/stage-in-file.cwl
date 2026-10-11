@@ -37,7 +37,7 @@ requirements:
         type: string
         doc: A valid [URI](https://datatracker.ietf.org/doc/html/rfc3986).
   DockerRequirement:
-    dockerPull: ghcr.io/eoap/application-package-patterns/vegetation-indexes:0.1.1
+    dockerPull: ghcr.io/eoap/application-package-patterns/vegetation-indexes:0.1.1@sha256:29025b744b6bf096ef4347ac1a3ba8c2d654346958a75092a3963a1ad5d783a7
   InlineJavascriptRequirement: {}
   InitialWorkDirRequirement:
     listing:

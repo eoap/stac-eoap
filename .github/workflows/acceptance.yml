@@ -1,0 +1,50 @@
+name: Notebook acceptance
+on:
+  push:
+    branches: [main, develop, feature/typed-cwl-inputs]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  acceptance:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      STAC_S3_ENDPOINT: http://127.0.0.1:8333
+      CWL_CUSTOM_NET: host
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: Install notebook environment and system tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y podman graphviz
+          uv venv --python 3.12 .venv
+          uv pip sync --python .venv/bin/python --require-hashes requirements-notebooks.txt
+          .venv/bin/python -m ipykernel install --user --name stac_env --display-name 'Python (STAC)'
+          .venv/bin/python -m bash_kernel.install
+          uv pip check --python .venv/bin/python
+      - name: Start disposable authenticated SeaweedFS
+        run: |
+          printf '%s\n' '{"identities":[{"name":"training","credentials":[{"accessKey":"test","secretKey":"test"}],"actions":["Admin","Read","Write","List","Tagging"]}]}' > /tmp/stac-s3.json
+          docker run -d --name stac-s3 --network host -v /tmp/stac-s3.json:/etc/seaweedfs/s3.json:ro chrislusf/seaweedfs:4.48 server -ip=127.0.0.1 -dir=/data -s3 -s3.config=/etc/seaweedfs/s3.json
+          .venv/bin/python scripts/prepare-acceptance-s3.py
+      - name: Validate standalone CWL and generated Markdown
+        run: .venv/bin/python scripts/cwl-docs.py --validate --output acceptance-results/cwl-docs
+      - name: Run all five notebooks with real EO data
+        run: |
+          source .venv/bin/activate
+          python scripts/run-notebooks.py --workspace "$GITHUB_WORKSPACE" --notebooks-dir notebooks --python-kernel stac_env --output acceptance-results/notebooks
+      - name: Build documentation strictly
+        run: uv run --no-project --python 3.12 --with mkdocs-material mkdocs build --strict --site-dir acceptance-results/site
+      - name: Collect storage logs
+        if: always()
+        run: |
+          mkdir -p acceptance-results
+          docker logs stac-s3 > acceptance-results/seaweedfs.log 2>&1 || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: acceptance-${{ github.sha }}
+          path: acceptance-results/

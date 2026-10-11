@@ -12,3 +12,6 @@ S2B*
 # Local documentation and execution artifacts
 /site/
 /artifacts/
+
+!requirements-notebooks.txt
+.venv/

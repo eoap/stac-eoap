@@ -36,3 +36,17 @@ hatch run cwl-docs --validate --output /tmp/stac-cwl-docs
 The second command validates metadata and CWL and renders reference Markdown for the six tracked CWL documents. Runtime acceptance additionally requires executing the configured notebooks and wrapped workflow and verifying the uploaded STAC assets; see [validation](docs/validation.md). No historical run logs or external workspace paths are required.
 
 Diagrams are maintained as PlantUML sources and checked-in SVGs in `docs/assets/diagrams/`.
+
+## Release acceptance
+
+Python 3.12 notebook dependencies are locked with hashes in
+`requirements-notebooks.txt`. Install with `uv pip sync --require-hashes`, then
+register `stac_env` and the Bash kernel. `scripts/run-notebooks.py` executes all
+five notebooks and preserves executed copies separately. Start from a clean
+checkout of the intended release commit.
+
+Acceptance CI runs those notebooks with real EO inputs, Podman and an isolated
+SeaweedFS instance, validates all standalone CWL/Markdown, and builds MkDocs
+strictly. `STAC_S3_ENDPOINT` selects the storage endpoint; `CWL_CUSTOM_NET` can
+select a Podman network for the CWL execution. The PDE defaults remain the
+in-cluster SeaweedFS endpoint. Processing runtime images are pinned by digest.

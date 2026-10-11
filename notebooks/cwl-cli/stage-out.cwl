@@ -50,7 +50,7 @@ requirements:
   NetworkAccess:
     networkAccess: true
   DockerRequirement:
-    dockerPull: ghcr.io/eoap/mastering-app-package/stage:1.0.0
+    dockerPull: ghcr.io/eoap/mastering-app-package/stage:1.0.0@sha256:1a99609fdc7e28b47afa79d0187aafb6475f1b78a6e89b587d5ad3d1c35702da
   InlineJavascriptRequirement: {}
   EnvVarRequirement:
     envDef:
