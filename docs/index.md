@@ -2,11 +2,11 @@
 
 Platforms for the exploitation of Earth Observation (EO) data have been developed by public and private companies in order to foster the usage of EO data and expand the market of Earth Observation-derived information. A fundamental principle of the platform operations concept is to move the EO data processing service’s user to the data and tools, as opposed to downloading, replicating, and exploiting data ‘at home’. In this scope, previous OGC activities initiated the development of an architecture to allow the ad-hoc deployment and execution of applications close to the physical location of the source data with the goal to minimize data transfer between data repositories and application processes.
 
-The OGC published the _Best Practice for Earth Observation Application Package_, a document defining the Best Practice to package and deploy Earth Observation Applications in an Exploitation Platform. The document is targeting the implementation, packaging and deployment of EO Applications in support of collaborative work processes between developers and platform owners.
+The OGC published the [Best Practice for Earth Observation Application Package (20-089r1)](https://docs.ogc.org/bp/20-089r1.html), a document defining the Best Practice to package and deploy Earth Observation Applications in an Exploitation Platform. The document is targeting the implementation, packaging and deployment of EO Applications in support of collaborative work processes between developers and platform owners.
 
 The Best Practice includes recommendations for the application design patterns, package encoding, container and data interfaces for data stage-in and stage-out strategies focusing on three main viewpoints: Application, Package and Platform.
 
-The focus of documentation set in on data interfaces for data stage-in and stage-out strategies.
+The focus of this documentation set is on data interfaces for data stage-in and stage-out strategies.
 
 ## Earth Observation Applications
 
@@ -42,3 +42,4 @@ The STAC specification defines several objects:
 Most importantly the STAC specification can be implemented in a completely ‘static’ manner as flat local files located near the data enabling the application to access products assets (e.g. JPEG 2000 band file, auxiliary data, browse) with a relative path (something that was not possible using OpenSearch as defined by OGC 13-026r8, OGC 13-032r8).
 
 The _Best Practice for Earth Observation Application Package_ selected a STAC Catalog with STAC Item files as the data manifests format, for application that require staging input data and/or output results.
+Start with the [quickstart](quickstart.md), then follow the [hands-on exercises](hands-on.md). For implementation details, read the [application manifest contract](application-data-flow.md) and [CWL reference](cwl-reference.md).
