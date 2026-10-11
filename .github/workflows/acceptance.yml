@@ -21,10 +21,13 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y podman graphviz
           uv venv --python 3.12 .venv
-          uv pip sync --python .venv/bin/python --require-hashes requirements-notebooks.txt
+          uv pip sync --python .venv/bin/python --require-hashes requirements/development.txt
+          uv pip install --python .venv/bin/python --no-deps --no-build-isolation -e .
           .venv/bin/python -m ipykernel install --user --name stac_env --display-name 'Python (STAC)'
           .venv/bin/python -m bash_kernel.install
           uv pip check --python .venv/bin/python
+      - name: Check locked package quality
+        run: .venv/bin/hatch run dev:check
       - name: Start disposable authenticated SeaweedFS
         run: |
           printf '%s\n' '{"identities":[{"name":"training","credentials":[{"accessKey":"test","secretKey":"test"}],"actions":["Admin","Read","Write","List","Tagging"]}]}' > /tmp/stac-s3.json
@@ -41,7 +44,7 @@ jobs:
           source .venv/bin/activate
           python scripts/check-wrapped-workflow.py
       - name: Build documentation strictly
-        run: uv run --no-project --python 3.12 --with mkdocs-material mkdocs build --strict --site-dir acceptance-results/site
+        run: .venv/bin/mkdocs build --strict --site-dir acceptance-results/site
       - name: Collect storage logs
         if: always()
         run: |
