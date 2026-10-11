@@ -36,6 +36,10 @@ jobs:
         run: |
           source .venv/bin/activate
           python scripts/run-notebooks.py --workspace "$GITHUB_WORKSPACE" --notebooks-dir notebooks --python-kernel stac_env --output acceptance-results/notebooks
+      - name: Execute and inspect the composed workflow
+        run: |
+          source .venv/bin/activate
+          python scripts/check-wrapped-workflow.py
       - name: Build documentation strictly
         run: uv run --no-project --python 3.12 --with mkdocs-material mkdocs build --strict --site-dir acceptance-results/site
       - name: Collect storage logs
