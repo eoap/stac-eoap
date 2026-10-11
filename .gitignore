@@ -8,3 +8,7 @@ S2B*
 !notebooks/cwl-workflow/eoap-types.yaml
 !notebooks/cwl-workflow/typed-inputs.yaml
 !notebooks/cwl-workflow/wrapped-inputs.yaml
+
+# Local documentation and execution artifacts
+/site/
+/artifacts/

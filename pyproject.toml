@@ -7,8 +7,8 @@ name = "stac-eoap"
 dynamic = ["version"]
 description = 'Understanding STAC for input/output data modelling in Earth Observation Applications'
 readme = "README.md"
-requires-python = ">=3.8"
-license = "MIT"
+requires-python = ">=3.9"
+license = "CC-BY-SA-4.0"
 keywords = []
 authors = [
   { name = "Fabrice Brito", email = "fabrice.brito@terradue.com" },
@@ -18,7 +18,6 @@ classifiers = [
   "Environment :: Console",
   "Intended Audience :: Developers",
   "Programming Language :: Python",
-  "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
@@ -42,7 +41,7 @@ extra-dependencies = [
 ]
 
 [tool.hatch.envs.default]
-skip-install = false
+skip-install = true
 dependencies = [
     "pystac",
     "stactools",
@@ -54,12 +53,15 @@ dependencies = [
     "tqdm", 
     "pystac-client",
     "ipykernel",
+    "jupyterlab",
+    "nbconvert",
+    "shapely>=2",
+    "pyproj",
     "scikit-image",
     "loguru",
     "rio-stac",
     "stactools-sentinel2",
     "mkdocs-material",
-    "mkdocs-mermaid2-plugin",
     "boto3",
     "cwl-utils",
     "eoap-cwlwrap==0.32.0",
