@@ -1,0 +1,882 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../hands-on/">
+      
+      
+        <link rel="next" href="../troubleshooting/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>CWL reference - STAC for input/output data management in EO applications</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cwl-interfaces-and-execution" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="STAC for input/output data management in EO applications" class="md-header__button md-logo" aria-label="STAC for input/output data management in EO applications" data-md-component="logo">
+      
+  <img src="../assets/icon-eoap.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            STAC for input/output data management in EO applications
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CWL reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="STAC for input/output data management in EO applications" class="md-nav__button md-logo" aria-label="STAC for input/output data management in EO applications" data-md-component="logo">
+      
+  <img src="../assets/icon-eoap.png" alt="logo">
+
+    </a>
+    STAC for input/output data management in EO applications
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data flow management
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data flow management
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../definitions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Definitions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../application-data-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application data flow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform-data-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Platform data flow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hands-on/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hands-on
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CWL reference
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CWL reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-the-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run the tools
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example limitations
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Validation and maintenance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-the-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run the tools
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example limitations
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="cwl-interfaces-and-execution">CWL interfaces and execution</h1>
+<p>The examples use CWL 1.2. The processing interface uses local <code>Directory</code> objects; wrapping changes the EO input to a URI record and adds staging parameters. A URI record's <code>value</code> is converted to a command argument or environment variable by the CWL bindings.</p>
+<h2 id="parameters">Parameters</h2>
+<table>
+<thead>
+<tr>
+<th>Port</th>
+<th>Application</th>
+<th>Wrapped workflow / staging</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>item</code></td>
+<td><code>Directory</code></td>
+<td>URI record</td>
+<td>Local catalog folder, or remote STAC Item URL to stage</td>
+</tr>
+<tr>
+<td><code>aoi</code></td>
+<td>OGC BBox record</td>
+<td>Same</td>
+<td>Four values in west, south, east, north order; <code>crs: CRS84</code> (longitude, latitude)</td>
+</tr>
+<tr>
+<td><code>epsg</code></td>
+<td>Enum, default <code>"4326"</code></td>
+<td>Same</td>
+<td>CRS of AOI coordinates; only <code>"4326"</code> is accepted here</td>
+</tr>
+<tr>
+<td><code>bands</code></td>
+<td>Array of band enums</td>
+<td>Same</td>
+<td>Use exactly two ordered bands: <code>green</code>, then <code>nir08</code> for the Landsat example</td>
+</tr>
+<tr>
+<td><code>stac_catalog</code></td>
+<td>Output <code>Directory</code></td>
+<td>Input to stage-out</td>
+<td>Folder containing the output catalog and assets</td>
+</tr>
+<tr>
+<td><code>reference</code></td>
+<td>—</td>
+<td>Stage-in URI record</td>
+<td>URL of one STAC Item, not a search response or Catalog</td>
+</tr>
+<tr>
+<td><code>endpoint_url</code></td>
+<td>—</td>
+<td>URI record</td>
+<td>S3 API endpoint reachable from the stage-out container</td>
+</tr>
+<tr>
+<td><code>s3_bucket</code>, <code>sub_path</code></td>
+<td>—</td>
+<td>Strings</td>
+<td>Existing bucket and destination prefix</td>
+</tr>
+<tr>
+<td><code>aws_access_key_id</code>, <code>aws_secret_access_key</code>, <code>region_name</code></td>
+<td>—</td>
+<td>Strings</td>
+<td>Storage credentials and region</td>
+</tr>
+<tr>
+<td><code>another_input</code></td>
+<td>—</td>
+<td>String, templates only</td>
+<td>Demonstration parameter; use <code>training</code>; not used to process data</td>
+</tr>
+<tr>
+<td><code>s3_catalog_output</code></td>
+<td>—</td>
+<td>Stage-out output URI record</td>
+<td>Uploaded root catalog location</td>
+</tr>
+</tbody>
+</table>
+<p>Application job shape:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-0-1"><span class="nt">item</span><span class="p">:</span>
+</span><span id="__span-0-2"><span class="w">  </span><span class="nt">class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Directory</span>
+</span><span id="__span-0-3"><span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/absolute/path/to/staged</span>
+</span><span id="__span-0-4"><span class="nt">aoi</span><span class="p">:</span>
+</span><span id="__span-0-5"><span class="w">  </span><span class="nt">class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://raw.githubusercontent.com/eoap/schemas/main/ogc.yaml#BBox</span>
+</span><span id="__span-0-6"><span class="w">  </span><span class="nt">bbox</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">-118.985</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">38.432</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-118.183</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">38.938</span><span class="p p-Indicator">]</span>
+</span><span id="__span-0-7"><span class="w">  </span><span class="nt">crs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CRS84</span>
+</span><span id="__span-0-8"><span class="nt">epsg</span><span class="p">:</span><span class="w"> </span><span class="s">"4326"</span>
+</span><span id="__span-0-9"><span class="nt">bands</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">green</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">nir08</span><span class="p p-Indicator">]</span>
+</span></code></pre></div>
+<p>Use the complete tracked <a href="https://github.com/eoap/stac-eoap/blob/main/notebooks/cwl-workflow/typed-inputs.yaml">processing input example</a> and <a href="https://github.com/eoap/stac-eoap/blob/main/notebooks/cwl-workflow/wrapped-inputs.yaml">wrapped input example</a>. Their URI records have the following shape:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-1-1"><span class="nt">reference</span><span class="p">:</span>
+</span><span id="__span-1-2"><span class="w">  </span><span class="nt">class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://raw.githubusercontent.com/eoap/schemas/main/string_format.yaml#URI</span>
+</span><span id="__span-1-3"><span class="w">  </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://planetarycomputer.microsoft.com/api/stac/v1/collections/landsat-c2-l2/items/LC09_L2SP_042033_20231015_02_T1</span>
+</span></code></pre></div>
+<p>URI records and module-defined band/EPSG enums are embedded in the CWL. The shared OGC BBox schema is still imported from <code>eoap/schemas/main/ogc.yaml</code>, so loading the document can require network access. Pin or vendor that schema if your deployment needs an immutable offline dependency.</p>
+<h2 id="run-the-tools">Run the tools</h2>
+<p>Run these commands from <code>notebooks/</code>, after configuring the environment in <a href="../quickstart/">Quickstart</a>. The CLI staging files are used by notebook 04; <code>templates/</code> contains the demonstration tools used by notebook 05, including a separate single-file downloader.</p>
+<p>Create <code>stage-in-params.yaml</code> using the <code>reference</code> record above, then run:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-2-1">hatch<span class="w"> </span>run<span class="w"> </span>cwltool<span class="w"> </span>--podman<span class="w"> </span>--outdir<span class="w"> </span>staged-run<span class="w"> </span>cwl-cli/stage-in.cwl<span class="w"> </span>stage-in-params.yaml
+</span></code></pre></div>
+<p>Read the emitted CWL JSON's <code>staged.location</code>. Copy <code>cwl-workflow/typed-inputs.yaml</code> to <code>processing-params.yaml</code> and set <code>item.path</code> to that directory's absolute path. Relative CWL paths resolve against the job file; the example's <code>../staged</code> assumes notebook 03 has created that folder.</p>
+<div class="highlight"><pre><span></span><code><span id="__span-3-1">hatch<span class="w"> </span>run<span class="w"> </span>cwltool<span class="w"> </span>--podman<span class="w"> </span>--outdir<span class="w"> </span>processing-run<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-2"><span class="w">  </span><span class="s1">'cwl-workflow/app-water-bodies.cwl#water-bodies-detection'</span><span class="w"> </span>processing-params.yaml
+</span></code></pre></div>
+<p>Use the emitted <code>stac_catalog.location</code> for stage-out's <code>stac_catalog.path</code>. Create <code>stage-out-params.yaml</code>:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-4-1"><span class="nt">stac_catalog</span><span class="p">:</span>
+</span><span id="__span-4-2"><span class="w">  </span><span class="nt">class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Directory</span>
+</span><span id="__span-4-3"><span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/absolute/path/from/stac_catalog/location</span>
+</span><span id="__span-4-4"><span class="nt">s3_bucket</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">results</span>
+</span><span id="__span-4-5"><span class="nt">sub_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">run-004-001</span>
+</span><span id="__span-4-6"><span class="nt">aws_access_key_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">training</span>
+</span><span id="__span-4-7"><span class="nt">aws_secret_access_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">training-secret</span>
+</span><span id="__span-4-8"><span class="nt">region_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">us-east-1</span>
+</span><span id="__span-4-9"><span class="nt">endpoint_url</span><span class="p">:</span>
+</span><span id="__span-4-10"><span class="w">  </span><span class="nt">class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://raw.githubusercontent.com/eoap/schemas/main/string_format.yaml#URI</span>
+</span><span id="__span-4-11"><span class="w">  </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://host.containers.internal:9000</span>
+</span></code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-5-1">hatch<span class="w"> </span>run<span class="w"> </span>cwltool<span class="w"> </span>--podman<span class="w"> </span>--outdir<span class="w"> </span>stage-out-run<span class="w"> </span>cwl-cli/stage-out.cwl<span class="w"> </span>stage-out-params.yaml
+</span></code></pre></div>
+<p>For end-to-end execution, run notebook 05 to generate <code>.main.cwl</code>, copy <code>cwl-workflow/wrapped-inputs.yaml</code> to <code>wrapped-params.yaml</code>, and update its storage configuration using <a href="../quickstart/">Quickstart</a>:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-6-1">hatch<span class="w"> </span>run<span class="w"> </span>cwltool<span class="w"> </span>--validate<span class="w"> </span>.main.cwl
+</span><span id="__span-6-2">hatch<span class="w"> </span>run<span class="w"> </span>cwltool<span class="w"> </span>--podman<span class="w"> </span>--outdir<span class="w"> </span>wrapped-run<span class="w"> </span>.main.cwl<span class="w"> </span>wrapped-params.yaml
+</span></code></pre></div>
+<p>Notebook 05 uses <code>eoap-cwlwrap==0.32.0</code>'s Python <code>wrap</code> API and <code>cwl-loader==0.27.0</code> serialization; no <code>cwltool --pack</code> is needed. Its generated input/output tables are the authority for the composed workflow's port names. The wrapper's command-line plugin separately requires <code>transpiler-mate-runtime</code>.</p>
+<h2 id="example-limitations">Example limitations</h2>
+<p>These are training examples, not a general batch processor:</p>
+<ul>
+<li>Processing takes the first direct Item in the input Catalog. Supply exactly one Item; additional Items are not processed.</li>
+<li>Stage-out uses <code>get_items()</code> without recursive traversal. Use direct Items with local relative asset paths; nested catalogs and remotely hosted output assets are not handled by this uploader.</li>
+<li>Input assets need a <code>data</code> role and EO band metadata with the requested <code>common_name</code>. Landsat uses <code>nir08</code>; the Sentinel-2 notebook uses <code>nir</code>.</li>
+<li>Band order controls <code>(first - second) / (first + second)</code>. Use green followed by NIR. The enum allows <code>green</code>, <code>nir</code>, <code>nir08</code>, but the array schema does not enforce exactly two entries.</li>
+<li>The AOI must overlap the selected scene and contain finite pixels for Otsu thresholding. The CWL binding requires a four-coordinate BBox; this example supports CRS84/4326 AOIs.</li>
+<li>The output is a uint8 water mask (<code>1</code> above the Otsu threshold, <code>0</code> otherwise), with the input acquisition time and a footprint derived from the output raster. It does not implement cloud masking or a scientific accuracy assessment.</li>
+<li>Stage-out uploads referenced assets only. Reusing a destination prefix can overwrite matching objects; use a fresh prefix. Uploads are not transactional, and failures can leave partial results.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      <a href="https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg">License CC BY-SA 4.0</a>, by <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
