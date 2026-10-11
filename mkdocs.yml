@@ -17,8 +17,6 @@ theme:
         name: Switch to light mode
 plugins:
   - search
-  - mermaid2:
-      version: 10.6.0
 
 markdown_extensions:
   - pymdownx.details
@@ -32,30 +30,26 @@ markdown_extensions:
       generic: true
   - pymdownx.superfences
   - pymdownx.tabbed
-  - pymdownx.superfences:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_div_format
   - attr_list
   - pymdownx.snippets:
       base_path: './'
   - pymdownx.highlight:
       line_spans: __span
-extra_css:
-  - styles/css/app.css
-  
+
 extra_javascript:
-  - javascripts/config.js
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-  
+
 
 nav:
   - Introduction: 'index.md'
-  - Data flow management: 
+  - Quickstart: 'quickstart.md'
+  - Data flow management:
     - Definitions: 'definitions.md'
     - Application data flow: 'application-data-flow.md'
     - Platform data flow: 'platform-data-flow.md'
   - Hands-on: 'hands-on.md'
+  - CWL reference: 'cwl-reference.md'
+  - Troubleshooting: 'troubleshooting.md'
+  - Validation and maintenance: 'validation.md'
 
 copyright: <a href="https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg">License CC BY-SA 4.0</a>, by <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons</a>
