@@ -1,0 +1,13 @@
+{
+  "source_commit": "75210b7613311dc03eade77a46d3047a159643ad",
+  "cluster": "eoap-mastering-app-package-docker",
+  "notebooks_passed": 5,
+  "environment": "hash-locked requirements/development.txt plus editable course wheel",
+  "notebook_results": [
+    "/workspace/lab-results/stac-rocky-75210b7/20261012T015225459694Z",
+    "/workspace/lab-results/stac-rocky-75210b7-podman/20261012T015545670092Z"
+  ],
+  "controller_requires_privileged_podman": "matches existing coder chart default",
+  "initial_unprivileged_notebook_4_failure_retained": true,
+  "published_candidate_acceptance_passed": false
+}
