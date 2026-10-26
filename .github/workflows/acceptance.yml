@@ -15,7 +15,7 @@ jobs:
       CWL_CUSTOM_NET: host
     steps:
       - uses: actions/checkout@v7
-      - uses: astral-sh/setup-uv@v6
+      - uses: astral-sh/setup-uv@v7
       - name: Install notebook environment and system tools
         run: |
           sudo apt-get update
