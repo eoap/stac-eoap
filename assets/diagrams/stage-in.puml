@@ -1,0 +1,18 @@
+@startuml
+!pragma teoz true
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName SansSerif
+hide footbox
+participant "Caller" as Caller
+participant "Stage-in" as Stage
+participant "STAC provider" as Provider
+participant "Local product directory" as Local
+participant "Application" as App
+Caller -> Stage: STAC Item URI record
+Stage -> Provider: Read Item and download assets
+Provider --> Stage: Item metadata and files
+Stage -> Local: Save catalog.json, Item JSON and assets\nwith local hrefs
+Stage --> App: CWL Directory
+App -> Local: Read catalog and resolve asset hrefs
+@enduml
