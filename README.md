@@ -45,6 +45,16 @@ register `stac_env` and the Bash kernel. `scripts/run-notebooks.py` executes all
 five notebooks and preserves executed copies separately. Start from a clean
 checkout of the intended release commit.
 
+`pyproject.toml` declares Python 3.12 as the minimum so Dependabot resolves
+notebook updates with a compatible interpreter. Keep this aligned with the
+acceptance workflow. To refresh selected dependencies while preserving hashes:
+
+```bash
+uv pip compile requirements-notebooks.in --python-version 3.12 --generate-hashes \
+  --upgrade-package certifi --upgrade-package filelock --upgrade-package pillow \
+  --output-file requirements-notebooks.txt
+```
+
 Acceptance CI runs those notebooks with real EO inputs, Podman and an isolated
 SeaweedFS instance, validates all standalone CWL/Markdown, and builds MkDocs
 strictly. `STAC_S3_ENDPOINT` selects the storage endpoint; `CWL_CUSTOM_NET` can
