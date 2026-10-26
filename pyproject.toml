@@ -7,7 +7,7 @@ name = "stac-eoap"
 dynamic = ["version"]
 description = 'Understanding STAC for input/output data modelling in Earth Observation Applications'
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.12"
 license = "CC-BY-SA-4.0"
 keywords = []
 authors = [
@@ -18,9 +18,6 @@ classifiers = [
   "Environment :: Console",
   "Intended Audience :: Developers",
   "Programming Language :: Python",
-  "Programming Language :: Python :: 3.9",
-  "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
