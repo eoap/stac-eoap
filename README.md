@@ -50,3 +50,19 @@ SeaweedFS instance, validates all standalone CWL/Markdown, and builds MkDocs
 strictly. `STAC_S3_ENDPOINT` selects the storage endpoint; `CWL_CUSTOM_NET` can
 select a Podman network for the CWL execution. The PDE defaults remain the
 in-cluster SeaweedFS endpoint. Processing runtime images are pinned by digest.
+
+## Course packaging and development checks
+
+This repository distributes course metadata and notebooks; it has no
+module-owned Python processing container. Its wheel uses Hatchling with Python
+3.12, and `requirements/development.txt` locks the notebook and validation tools
+with hashes. Run `hatch run dev:check` for formatting, lint, strict typing and
+security checks. Run `hatch run test:test` to validate isolated CWL and its
+Markdown documentation contract. Full acceptance additionally runs all five
+notebooks with real EO data and checks the composed workflow's S3 output.
+
+The locked bootstrap is explicit because Hatch skips installation hooks for
+`skip-install = true`. Notebook environments install the project only after the
+lock is installed. The SDK fetcher used during isolated CWL validation retains
+the published OGC-schema restriction; shared schema imports remain remote, and
+module-owned schema definitions stay inline.

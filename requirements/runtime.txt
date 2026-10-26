@@ -1,0 +1,1 @@
+# Empty runtime dependency set for the metadata-only course wheel.
