@@ -14,7 +14,7 @@ jobs:
       STAC_S3_ENDPOINT: http://127.0.0.1:8333
       CWL_CUSTOM_NET: host
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: astral-sh/setup-uv@v7
       - name: Install notebook environment and system tools
         run: |
@@ -47,7 +47,7 @@ jobs:
         run: |
           mkdir -p acceptance-results
           docker logs stac-s3 > acceptance-results/seaweedfs.log 2>&1 || true
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: acceptance-${{ github.sha }}
