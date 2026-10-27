@@ -248,10 +248,12 @@ botocore==1.35.93 \
     #   aiobotocore
     #   boto3
     #   s3transfer
-cachecontrol==0.14.4 \
+cachecontrol[filecache]==0.14.4 \
     --hash=sha256:b7ac014ff72ee199b5f8af1de29d60239954f223e948196fa3d84adaffc71d2b \
     --hash=sha256:e6220afafa4c22a47dd0badb319f84475d79108100d04e26e8542ef7d3ab05a1
-    # via schema-salad
+    # via
+    #   cachecontrol
+    #   schema-salad
 certifi==2026.10.23 \
     --hash=sha256:a9895e6e2758b371e0545e321a3a8fd1fcfd9829ada8824a936dfb16aaaf36cd \
     --hash=sha256:e9b54de76e530bb6cf0ccd036787103acb58fd42ba930ea8bf948ddbaa2f61d1
@@ -667,7 +669,7 @@ frozenlist==1.8.0 \
     # via
     #   aiohttp
     #   aiosignal
-fsspec==2026.9.0 \
+fsspec[http]==2026.9.0 \
     --hash=sha256:0f08147951c8cb31d844c3547d631053b127863b60be04cf06e121333ee0e2fe \
     --hash=sha256:8dd6e646e99ea382bd85f97a45e6b526a442d79423a7dc673f1e2756d05fcb5f
     # via stactools
@@ -1899,7 +1901,7 @@ pyproj==3.8.0 \
     --hash=sha256:faa68c0996bdd3fd997d86c676e758b72a96209ab14b7c5e8b8dcf3b23f85881 \
     --hash=sha256:fe26eb69e78f8b8d30ee67a6a6cfc172dd6085bc2c164a7143568138cb3a5a39
     # via stactools
-pystac==1.15.2 \
+pystac[validation]==1.15.2 \
     --hash=sha256:4c9a3b2352cad7eb3c226145251c65cbe5c1b04b25d4265b30c015dddf5f391d \
     --hash=sha256:b006833253d7e5acd04d877bb7504e14aa1dc98dd0f0ab12f893595030dda2b3
     # via
@@ -1907,9 +1909,9 @@ pystac==1.15.2 \
     #   rio-stac
     #   stac-asset
     #   stactools
-pystac-client==0.9.0 \
-    --hash=sha256:3908951583bcc6a3aaaf2828024a8e03764e6ca9d9f9f1d8149df587e14dd744 \
-    --hash=sha256:eed146b5980f93646aaa3a59080f11f1dcab6000b0bfbc28b1d0c6fd0a61eda1
+pystac-client==0.9.1 \
+    --hash=sha256:53247a8997002c36202fc419a891ea493bd44c45a446a8e77aca7d8b9bd82516 \
+    --hash=sha256:cfdbc123cb14fba5909b947ed57e423af39b061de07a52040fb65f694cb8896e
     # via -r requirements-notebooks.in
 pystac-core==1.15.2 \
     --hash=sha256:3720485dd06334e6536afe8f2b8bb0def5c65437170e0251b3417abb89d6b3f3 \
