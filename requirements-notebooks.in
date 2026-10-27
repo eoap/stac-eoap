@@ -22,5 +22,5 @@ cwltool
 graphviz
 pandas
 asyncclick
-cwl-loader==0.27.0
+cwl-loader==0.28.0
 eoap-cwlwrap==0.32.0
