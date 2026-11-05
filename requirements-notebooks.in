@@ -17,7 +17,7 @@ bash_kernel
 loguru
 scikit-image
 rio_stac
-boto3==1.35.23
+boto3==1.35.93
 cwltool
 graphviz
 pandas
