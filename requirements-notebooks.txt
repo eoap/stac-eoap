@@ -454,9 +454,9 @@ comm==0.2.3 \
     --hash=sha256:2dc8048c10962d55d7ad693be1e7045d891b7ce8d999c97963a5e3e99c055971 \
     --hash=sha256:c615d91d75f7f04f095b30d1c1711babd43bdc6419c1be9886a85f2f4e489417
     # via ipykernel
-cwl-loader==0.27.0 \
-    --hash=sha256:083b6e98ff338913f6cb76227ccf790ee8804e5abde32574f33b7059dd065f8b \
-    --hash=sha256:42661bdeb5b33eca0b929d23a0c52c4bacbc7b0c76d018d67f852950a570cffc
+cwl-loader==0.28.0 \
+    --hash=sha256:149d223f795ddaae62a824801c94c050bd56a36b671be775a038c17aa6d7b5ec \
+    --hash=sha256:c79334423322525154490ab0d51bb40894d9bb5fecef31e5be6dead5566b6fc9
     # via -r requirements-notebooks.in
 cwl-upgrader==1.2.15 \
     --hash=sha256:42ae4546a433a7439f56282942e3a9369d08d9a2ad31d86cddb1bb298e28640d \
