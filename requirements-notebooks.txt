@@ -2689,9 +2689,9 @@ spython==0.3.14 \
     --hash=sha256:72968583e498bc2a51f9acd0ed6bc0d7d1f7ccd491feaba5e2f7d944bc51da3a \
     --hash=sha256:8ad53ef034395cfa2d8a710cc1c3638e4475e5bbc6a2842d317db8013c2e4188
     # via cwltool
-stac-asset==0.4.7 \
-    --hash=sha256:1487cd1ac69c6478d6d6c99a49268fc7aaf1fa4418f7ca0a7bcbe09124f83009 \
-    --hash=sha256:fd1af8ee96cfd11c84922166246a5f90f4d7bd1d0e98361d301be923d60b75aa
+stac-asset==0.4.8 \
+    --hash=sha256:1aa9e8d9f1fe9667912cb5f5de3187d1213c854e592d634a6421a96c866eb28e \
+    --hash=sha256:cb7ac55edd00e5cc024314ecba8af84f169d9e2c136d113857f461c420772dc6
     # via -r requirements-notebooks.in
 stack-data==0.6.3 \
     --hash=sha256:836a778de4fec4dcd1dcd89ed8abff8a221f58308462e1c4aa2a3cf30148f0b9 \
