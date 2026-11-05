@@ -1,0 +1,18 @@
+@startuml
+!pragma teoz true
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName SansSerif
+hide footbox
+participant "Application" as App
+participant "Local results directory" as Local
+participant "Stage-out" as Stage
+participant "S3 storage" as S3
+participant "Caller" as Caller
+App -> Local: Write catalog.json, Item JSON and otsu.tif
+App --> Stage: CWL Directory
+Stage -> Local: Read catalog and referenced assets
+Stage -> S3: Upload assets; rewrite asset hrefs
+Stage -> S3: Upload Item JSON and root catalog
+Stage --> Caller: URI record pointing to S3 catalog.json
+@enduml

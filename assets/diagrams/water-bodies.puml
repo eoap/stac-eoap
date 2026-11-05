@@ -1,0 +1,30 @@
+@startuml
+!pragma teoz true
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName SansSerif
+hide footbox
+participant "Caller" as Caller
+participant "Wrapper stage-in" as StageIn
+box "Application workflow: water-bodies-detection" #EEF5FF
+participant "node_detect" as Detect
+end box
+participant "Wrapper stage-out" as StageOut
+participant "S3 storage" as S3
+Caller -> StageIn: item: URI record
+StageIn -> Detect: item: Directory (local STAC catalog)
+Caller -> Detect: aoi: BBox, epsg: enum, bands: enum array
+activate Detect
+note right of Detect
+  One CWL step:
+  crop green and NIR
+  calculate NDWI
+  apply Otsu threshold
+  create STAC catalog and otsu.tif
+end note
+Detect -> StageOut: stac_catalog: Directory
+deactivate Detect
+Caller -> StageOut: S3 endpoint, bucket, prefix and credentials
+StageOut -> S3: Upload referenced assets and STAC JSON
+StageOut --> Caller: Catalog URI record
+@enduml
