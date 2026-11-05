@@ -15,3 +15,5 @@ S2B*
 
 !requirements-notebooks.txt
 .venv/
+
+!requirements/*.txt
